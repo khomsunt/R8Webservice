@@ -1,0 +1,22 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "meetupz",
+    "password": "",
+    "name": "db",
+    "user": "",
+    "connector": "mongodb"
+  },
+  "jhcisDS": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "jhcisdb",
+    "password": "123456",
+    "name": "jhcisDS",
+    "user": "root",
+    "connector": "mysql"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "person",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "pcucodeperson": {
+      "type": "string",
+      "required": true
+    },
+    "id": {
+      "type": "number",
+      "required": true,
+      "id":true,
+      "mysql":
+      {
+          "columnName":"pid",
+          "dataType":"int",
+          "nullable":"N"
+      }
+    },
+    "fname": {
+      "type": "string",
+      "required": true
+    },
+    "lname": {
+      "type": "string",
+      "required": true
+    },
+    "idcard": {
+      "type": "string",
+      "required": true
+    },
+    "birth": {
+      "type": "date",
+      "required": true
+    },
+    "sex": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,5 @@
+/node_modules
+/react-server/node_modules
+/react-socket/node_modules
+/server1/node_modules
+/server1/loopb/node_modules
