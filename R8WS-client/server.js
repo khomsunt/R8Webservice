@@ -1,8 +1,10 @@
+
+
 // Server 1
 var axios = require('axios');
-var io = require("socket.io").listen(8099); // This is the Server for SERVER 1
+var io = require("socket.io").listen(8200); // This is the Server for SERVER 1
 var other_server = require("socket.io-client")('http://203.157.177.7:8100'); // This is a client connecting to the SERVER 2
-var hospcode= '05469';
+var hospcode= '05555';
 var hosptype= 'hospital';
 
 
@@ -41,8 +43,8 @@ function updateCheck(data){
 }
 
 function dataGetData(data){
-	console.log('dataGetData');
-	console.log(data);
+    console.log('dataGetData');
+    console.log(data);
     var check = false;
     if (data.receiver.hospcode.lenght == undefined && data.receiver.hosptype.lenght == undefined) {
         check = true;
@@ -175,7 +177,7 @@ io.sockets.on("connection",function(socket){
     });
 
     socket.on("sendUpdateCheck",function(data){
-    	updateCheck(data);
+        updateCheck(data);
     });
 
 });

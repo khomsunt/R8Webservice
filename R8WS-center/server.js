@@ -6,10 +6,10 @@ var path = require('path');
 var upath = require('upath');
 var dateFormat = require('dateformat');
 var a_file = [];
-var server1_source = __dirname+"/server1";
-var server1_source_exclude_dir = ['/config'];
-var server1_source_exclude_file = ['.DS_Store','default.json'];
-var server1_source_exclude_extension = [];
+var R8WS_client_source = "/var/www/html/R8Webservice/R8WS-client";
+var R8WS_client_source_exclude_dir = ['/var/www/html/R8Webservice/R8WS-client/config'];
+var R8WS_client_source_exclude_file = ['.DS_Store','default.json'];
+var R8WS_client_source_exclude_extension = [];
 
 console.log("Server starting at port "+config.get("app.ioPort"));
 
@@ -21,17 +21,17 @@ function crawl(dir){
 		var filename = path.basename(next);
 
         if (fs.lstatSync(next).isDirectory()==true){
-        	if (server1_source_exclude_dir.indexOf(next)>-1){
+        	if (R8WS_client_source_exclude_dir.indexOf(next)>-1){
         	}else{
             	crawl(next);
         	}
         }else{
-        	if (server1_source_exclude_extension.indexOf(ext)>-1){
+        	if (R8WS_client_source_exclude_extension.indexOf(ext)>-1){
         	}else{
-        		if (server1_source_exclude_file.indexOf(filename)>-1){
+        		if (R8WS_client_source_exclude_file.indexOf(filename)>-1){
         		}else{
             		var stats = fs.statSync(next);
-            		a_file.push([next.replace(server1_source,''),stats.mtime]);
+            		a_file.push([next.replace(R8WS_client_source,''),stats.mtime]);
             	}
         	}
         }
@@ -39,6 +39,7 @@ function crawl(dir){
 }
 
 function base64_encode(file) {
+
     var bitmap = fs.readFileSync(file);
     return new Buffer(bitmap).toString('base64');
 }
@@ -115,7 +116,7 @@ io.sockets.on("connection",function(socket){
 //console.log(data);
         var a_return=[];
         a_file.length=0;
-        crawl(server1_source);
+        crawl(R8WS_client_source);
         for (var y in a_file){
             var have=false;
             for (var x in data.request){
@@ -141,7 +142,7 @@ console.log(a_return);
     });
 
     socket.on("downloadRequestCenter",function(data){
-    	var requestFile = path.join(server1_source,data.request[0]);
+    	var requestFile = path.join(R8WS_client_source,data.request[0]);
     	var contentFile = base64_encode(requestFile);
     	socket.emit(`downloadResponseBranch_${data.sender.hospcode}`, {response: {file: data.request[0], content: contentFile }});
     	console.log(data.request[0]);
