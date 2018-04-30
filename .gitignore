@@ -1,5 +1,6 @@
-/node_modules
-/react-server/node_modules
-/react-socket/node_modules
-/server1/node_modules
-/server1/loopb/node_modules
+/R8REST-center/node_modules
+/R8REST-client/node_modules
+/R8Web-center/node_modules
+/R8Web-client/node_modules
+/R8WS-center/node_modules
+/R8WS-client/node_modules
